@@ -28,4 +28,25 @@
  * @since v<version>
  */
 
+import { Story } from "./story.js";
+
+export async function main(): Promise<void> {
+	
+	const story: Story = await Story.fromURL(
+		new URL("https://www.traverseticker.com/news/ridge45-birmley-neighborhoods-planned-to-expand/")
+	);
+	
+	console.log("Title:", story.title);
+	console.log("Author:", story.author);
+	console.log("Date:", story.date.toLocaleDateString());
+	console.log("URL:", story.url.href);
+	console.log("Story (HTML):", story.storyContent.html);
+	console.log("Story (Text):", story.storyContent.text.replace(/\n/g, "\n\n"));
+	
+	// console.log(JSON.stringify(story, null, 4));
+	
+}
+
+main().catch(console.error);
+
 // export { ClassName } from "./class-location";
