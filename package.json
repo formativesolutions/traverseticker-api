@@ -1,0 +1,59 @@
+{
+	"name": "<name>",
+	"version": "<version>",
+	"description": "<desc>",
+	"type": "module",
+	"exports": {
+		".": "./js/main.js"
+	},
+	"typesVersions": {
+		"*": {
+			">=4.0": [
+				"./.d.ts/main.d.ts"
+			]
+		}
+	},
+	"engines": {
+		"node": ">=14.16"
+	},
+	"main": "js/main",
+	"types": ".d.ts/main",
+	"scripts": {
+		"build": "gulp rebuild",
+		"lint": "eslint \"./**/*.@(j|t)s?(x)\"",
+		"pretest": "npm run build",
+		"test": "jest",
+		"isClean": "run-script-os",
+		"isClean:windows": "(git diff --quiet) -and (git diff --cached --quiet)",
+		"isClean:nix": "git diff --quiet && git diff --cached --quiet",
+		"prepack": "npm-run-all --sequential --continue-on-error build test lint",
+		"prepublishOnly": "npm run isClean"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/<github_org>/<base_name>.git"
+	},
+	"keywords": [],
+	"author": "Trevor Sears <trevor@trevorsears.com> (https://trevorsears.com/)",
+	"license": "GPL-3.0-or-later",
+	"bugs": {
+		"url": "https://github.com/<github_org>/<base_name>/issues"
+	},
+	"homepage": "https://github.com/<github_org>/<base_name>#readme",
+	"devDependencies": {
+		"@t99/eslint-config": "latest",
+		"@types/jest": "latest",
+		"@types/node": "latest",
+		"del": "latest",
+		"gulp": "latest",
+		"gulp-sourcemaps": "latest",
+		"gulp-terser": "latest",
+		"gulp-typescript": "latest",
+		"jest": "latest",
+		"npm-run-all": "latest",
+		"run-script-os": "latest",
+		"ts-jest": "latest",
+		"ts-node": "latest",
+		"typescript": "latest"
+	}
+}
